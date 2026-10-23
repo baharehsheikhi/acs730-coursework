@@ -2,7 +2,7 @@ name: lab4-ci
  
 on:
   push:
-    branches: [main]
+    branches: [main, lab4-pipeline]
   pull_request:
  
 permissions:
