@@ -1,9 +1,5 @@
+
 # ACS730 midterm practice -- LocalStack-targeted network.
-#
-# Everything lives in one file on purpose: Terraform loads every .tf file in a
-# directory and does not care about the names.
-#
-# This configuration does not currently pass `terraform validate`. Tasks 3 and 4.
 
 variable "aws_region" {
   description = "Region to deploy into. LocalStack ignores it, but the provider still requires one."
@@ -65,7 +61,7 @@ variable "ingress_cidr" {
 }
 
 variable "enable_artifact_bucket" {
-  description = "Whether to create the artifact bucket. Demonstrates count as an on/off switch."
+  description = "Whether to create the artifact bucket."
   type        = bool
   default     = true
 }
@@ -77,7 +73,7 @@ variable "use_localstack" {
 }
 
 variable "localstack_endpoint" {
-  description = "Where LocalStack is listening. Ignored unless use_localstack is true."
+  description = "Where LocalStack is listening."
   type        = string
   default     = "http://localhost:4566"
 }
@@ -85,7 +81,6 @@ variable "localstack_endpoint" {
 provider "aws" {
   region = var.aws_region
 
-  # LocalStack wants the shape of a credential, not a real one.
   access_key = var.use_localstack ? "test" : null
   secret_key = var.use_localstack ? "test" : null
 
@@ -170,7 +165,7 @@ resource "aws_route_table" "public" {
 resource "aws_route_table_association" "public" {
   for_each = var.public_subnets
 
-  subnet_id      = aws_subnet.public.id
+  subnet_id      = aws_subnet.public[each.key].id
   route_table_id = aws_route_table.public.id
 }
 
@@ -180,7 +175,7 @@ resource "aws_security_group" "web" {
   vpc_id      = aws_vpc.main.id
 
   dynamic "ingress" {
-    for_each = var.ingress_port
+    for_each = var.ingress_ports
 
     content {
       description = "Inbound TCP ${ingress.value}"
@@ -238,3 +233,4 @@ output "provider_target" {
   description = "Which API this configuration was planned against."
   value       = var.use_localstack ? var.localstack_endpoint : "real AWS in ${var.aws_region}"
 }
+
