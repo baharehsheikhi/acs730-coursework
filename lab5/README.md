@@ -25,3 +25,4 @@ There are two possible plans:
 - `create_artifact_bucket = true`: 1 bucket added.
 
 In short: **use count when the question is how many, and for_each when the question is which ones.**
+
