@@ -4,3 +4,6 @@
 .terraform/
 .env
 credentials
+*.tfstate.*
+tfplan
+crash.log

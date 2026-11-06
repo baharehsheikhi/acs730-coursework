@@ -1,0 +1,35 @@
+provider "aws" {
+  region = var.aws_region
+
+  # Fake credentials for LocalStack.
+  access_key = var.use_localstack ? "test" : null
+  secret_key = var.use_localstack ? "test" : null
+
+  # Disable AWS checks that are unnecessary for LocalStack.
+  skip_credentials_validation = var.use_localstack
+  skip_metadata_api_check     = var.use_localstack
+  skip_region_validation      = var.use_localstack
+
+  # Use path-style S3 URLs with LocalStack.
+  s3_use_path_style = var.use_localstack
+
+  # Use LocalStack endpoints only when enabled.
+  dynamic "endpoints" {
+    for_each = var.use_localstack ? [1] : []
+
+    content {
+      ec2 = var.localstack_endpoint
+      s3  = var.localstack_endpoint
+      sts = var.localstack_endpoint
+      iam = var.localstack_endpoint
+    }
+  }
+
+  default_tags {
+    tags = {
+      Course = "ACS730"
+      Lab    = "lab5"
+      Owner  = var.owner
+    }
+  }
+}
