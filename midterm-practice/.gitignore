@@ -1,0 +1,23 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# Sensitive variables
+*.tfvars
+!localstack.tfvars
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment files
+.env
+.env.*
+
+# OS/editor files
+.DS_Store
+*.swp
