@@ -1,3 +1,4 @@
+
 name: Midterm Practice CI
 
 # This workflow is not doing its job. Task 2.
@@ -44,7 +45,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build the image
-        run: docker build -t "$IMAGE" midterm-practice/app
+        run: docker build -t "$IMAGE" midterm-practice/
 
       - name: Fail the build if the image runs as root
         run: |
@@ -66,3 +67,4 @@ jobs:
           curl -fsS http://localhost:8080/
           docker logs api
           docker rm -f api
+
