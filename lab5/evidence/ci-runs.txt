@@ -1,0 +1,4 @@
+completed	success	Lab 5 Part 10: Required checks test	lab5-ci	lab5-part10	pull_request	42225530453	2m16s	2026-11-06T13:26:37Z
+completed	failure	Lab 5 Part 10: Required checks test	lab5-ci	lab5-part10	pull_request	42218685250	18s	2026-11-06T12:34:18Z
+completed	success	Merge pull request #8 from baharehsheikhi/lab5	lab5-ci	main	push	42214149882	2m9s	2026-11-06T11:58:34Z
+completed	success	Lab 5	lab5-ci	lab5	pull_request	42212998780	2m6s	2026-11-06T11:48:51Z
