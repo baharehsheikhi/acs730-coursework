@@ -1,0 +1,13 @@
+Golden AMI boot-to-ready test
+AMI: ami-0f2c7fe4085237835
+Instance: i-06ef531e4cc6a6368
+Public IP: 54.160.133.156
+Launch timestamp recorded: 1795164072
+HTTP verification timestamp: 1795164354
+Elapsed time: 282 seconds (4 minutes 42 seconds)
+
+Validation:
+- GET / returned HTTP 200 OK.
+- GET /baked.html returned HTTP 200 OK.
+- The ACS730 web service started automatically from the golden AMI.
+- No post-launch Ansible configuration was required.
